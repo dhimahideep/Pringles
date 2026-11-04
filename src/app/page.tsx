@@ -190,44 +190,47 @@ export default function Home() {
             <section
               key={flavorItem.id}
               id={`slide-${slideIndex}`}
-              className="w-full min-h-[100dvh] h-[100dvh] snap-start snap-always flex flex-col justify-end md:justify-center md:flex-row md:items-center px-5 sm:px-10 md:px-20 lg:px-28 pb-8 sm:pb-12 md:pb-0 pt-20 md:pt-0 relative overflow-hidden bg-transparent pointer-events-none"
+              className="w-full min-h-[100dvh] h-[100dvh] snap-start snap-always flex flex-col justify-between md:justify-center md:flex-row md:items-center px-6 sm:px-10 md:px-20 lg:px-28 pt-20 md:pt-0 pb-6 md:pb-0 relative overflow-hidden bg-transparent pointer-events-none"
             >
-              {/* Text container: relative z-10 pointer-events-none so touches pass through to canvas scroll */}
-              <div className="w-full md:w-1/2 max-w-xl text-left relative z-10 pointer-events-none">
-                {/* Slide Index & Neo-Brutalist Badge */}
-                <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-4">
-                  <span className="font-anton text-xs sm:text-sm tracking-widest text-white/80 drop-shadow">
-                    {flavorItem.number} // 03
-                  </span>
-                  <div
-                    className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full border-2 border-black font-anton text-[10px] sm:text-[11px] tracking-widest uppercase shadow-[2px_2px_0px_0px_#000000] sm:shadow-[3px_3px_0px_0px_#000000]"
-                    style={{
-                      backgroundColor: flavorItem.badgeBg,
-                      color: flavorItem.badgeText,
-                    }}
-                  >
-                    <Icon size={12} className="stroke-[2.5]" />
-                    <span>{flavorItem.badge}</span>
+              {/* Text & Controls Container: Full height on mobile with justify-between so text sits in upper 35% and action row is docked at the very bottom. Centered left-half on desktop. */}
+              <div className="w-full md:w-1/2 max-w-xl text-left relative z-10 flex flex-col justify-between md:justify-center h-full md:h-auto pointer-events-none">
+                {/* ── 1. UPPER 35% TEXT GROUP (Docked to top under header) ── */}
+                <div className="flex flex-col items-start pointer-events-none">
+                  {/* Slide Index & Neo-Brutalist Badge */}
+                  <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                    <span className="font-anton text-xs sm:text-sm tracking-widest text-white/80 drop-shadow">
+                      {flavorItem.number} // 03
+                    </span>
+                    <div
+                      className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full border-2 border-black font-anton text-[10px] sm:text-[11px] tracking-widest uppercase shadow-[2px_2px_0px_0px_#000000] sm:shadow-[3px_3px_0px_0px_#000000]"
+                      style={{
+                        backgroundColor: flavorItem.badgeBg,
+                        color: flavorItem.badgeText,
+                      }}
+                    >
+                      <Icon size={12} className="stroke-[2.5]" />
+                      <span>{flavorItem.badge}</span>
+                    </div>
                   </div>
+
+                  {/* Subtitle */}
+                  <p className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/90 mb-1 sm:mb-2 drop-shadow">
+                    {flavorItem.subtitle}
+                  </p>
+
+                  {/* Flavor Headline: text-4xl md:text-7xl lg:text-8xl */}
+                  <h2 className="font-anton text-4xl md:text-7xl lg:text-8xl tracking-tight uppercase leading-[0.9] md:leading-[0.85] text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] mb-2 sm:mb-3 md:mb-4">
+                    {flavorItem.title}
+                  </h2>
+
+                  {/* Paragraph Description: text-xs md:text-base max-w-[280px] md:max-w-md line-clamp-3 md:line-clamp-none */}
+                  <p className="text-xs md:text-base max-w-[280px] md:max-w-md line-clamp-3 md:line-clamp-none text-white font-medium leading-relaxed drop-shadow">
+                    {flavorItem.desc}
+                  </p>
                 </div>
 
-                {/* Subtitle */}
-                <p className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/90 mb-1 sm:mb-2 drop-shadow">
-                  {flavorItem.subtitle}
-                </p>
-
-                {/* Responsive Anton Flavor Headline */}
-                <h2 className="font-anton text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.9] md:leading-[0.85] text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] mb-3 sm:mb-4 md:mb-6">
-                  {flavorItem.title}
-                </h2>
-
-                {/* Description */}
-                <p className="text-xs sm:text-base md:text-lg text-white font-medium leading-relaxed max-w-lg mb-4 sm:mb-6 md:mb-8 drop-shadow">
-                  {flavorItem.desc}
-                </p>
-
-                {/* Interactive Neo-Brutalist Action & Stat Row */}
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pointer-events-auto">
+                {/* ── 2. BOTTOM STAT CARD & CTA BUTTON ROW (Docked at the very bottom) ── */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pointer-events-auto mt-auto md:mt-8 pt-4 md:pt-0">
                   {/* Neo-Brutalist Stat Card */}
                   <div className="inline-flex items-center gap-3 sm:gap-4 px-3.5 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-white text-black border-2 border-black shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000]">
                     <span className="font-anton text-2xl sm:text-3xl md:text-4xl tracking-tight leading-none">

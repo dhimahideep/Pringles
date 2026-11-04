@@ -99,22 +99,24 @@ function InteractiveCanRig({
 
 const CanvasScene = forwardRef<THREE.Group, CanvasSceneProps>(
   function CanvasScene({ activeSlide = 0 }, _ref) {
-    const [isDesktop, setIsDesktop] = useState(true)
+    const [isMobile, setIsMobile] = useState(false)
 
     useEffect(() => {
-      const checkDesktop = () => setIsDesktop(window.innerWidth >= 768)
-      checkDesktop()
-      window.addEventListener('resize', checkDesktop)
-      return () => window.removeEventListener('resize', checkDesktop)
+      const checkMobile = () => {
+        setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768)
+      }
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+      return () => window.removeEventListener('resize', checkMobile)
     }, [])
 
-    // Desktop: positioned on right side at x=1.8, y=-0.4, scale=0.58
-    // Mobile: centered at x=0, upper area y=0.5, scale=0.38 leaving lower half for text
-    const posX = isDesktop ? 1.8 : 0
-    const posY = isDesktop ? -0.4 : 0.5
-    const canScale = isDesktop ? 0.58 : 0.38
-    const shadowY = isDesktop ? -1.9 : -0.45
-    const shadowScale = isDesktop ? 5 : 3.2
+    // Desktop: positioned on right side at x=1.8, y=-0.4, scale=0.55
+    // Mobile: centered at x=0, pushed down into bottom half at y=-1.2, scale=0.35
+    const posX = isMobile ? 0 : 1.8
+    const posY = isMobile ? -1.2 : -0.4
+    const canScale = isMobile ? 0.35 : 0.55
+    const shadowY = isMobile ? -1.8 : -1.9
+    const shadowScale = isMobile ? 3.5 : 5
     const isHero = activeSlide === 0
 
     return (
