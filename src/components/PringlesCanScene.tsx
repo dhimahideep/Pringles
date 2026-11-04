@@ -30,17 +30,18 @@ type GLTFResult = GLTF & {
 
 type Props = {
   activeFlavor?: number
+  canScale?: number
 } & React.ComponentPropsWithoutRef<'group'>
 
 export const PringlesCanScene = forwardRef<THREE.Group, Props>(
-  function PringlesCanScene({ activeFlavor = 0, ...props }, ref) {
+  function PringlesCanScene({ activeFlavor = 0, canScale = 0.58, ...props }, ref) {
     const { nodes, materials } = useGLTF('/pringles_cans.glb') as unknown as GLTFResult
 
     return (
       <group ref={ref} {...props} dispose={null}>
         <Center>
-          {/* Scaled down so FULL can fits vertically on screen (scale={0.58}) */}
-          <group scale={0.58}>
+          {/* Responsive scale: 0.58 on desktop, ~0.36 - 0.40 on mobile */}
+          <group scale={canScale}>
             {/* rotation={[-Math.PI / 2, 0, 0]} aligns upright with front label facing camera directly */}
             <group rotation={[-Math.PI / 2, 0, 0]}>
               {/* ── 1. RED CAN (ORIGINAL): Visible only when activeFlavor === 0 ── */}

@@ -137,25 +137,25 @@ export default function Home() {
         {/* ── SLIDE 0: HERO LANDING PAGE ──────────────────────────────────── */}
         <section
           id="slide-0"
-          className="w-full min-h-screen h-screen snap-start snap-always flex flex-col items-center justify-center gap-2 py-6 pt-16 px-4 relative overflow-hidden bg-transparent"
+          className="w-full min-h-[100dvh] h-[100dvh] snap-start snap-always flex flex-col items-center justify-center gap-2 py-6 pt-16 px-4 relative overflow-hidden bg-transparent pointer-events-none"
         >
           {/* Top badge */}
           <div className="relative z-20 pointer-events-auto">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border-2 border-black text-black font-anton text-xs tracking-widest uppercase shadow-[4px_4px_0px_0px_#000000]">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full bg-white border-2 border-black text-black font-anton text-[11px] sm:text-xs tracking-widest uppercase shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000]">
               <Sparkles size={14} className="text-red-600 fill-red-600" />
               <span>THE ORIGINAL STACKABLE CRISP</span>
             </div>
           </div>
 
-          {/* Large floating 3D logo shifted a bit higher up (h-64 md:h-80 w-full relative z-10) */}
-          <div className="h-64 md:h-80 w-full max-w-xl flex items-center justify-center relative z-10 pointer-events-none -mt-3 md:-mt-6">
+          {/* Large floating 3D logo shifted a bit higher up (h-56 sm:h-64 md:h-80 w-full relative z-10) */}
+          <div className="h-56 sm:h-64 md:h-80 w-full max-w-xl flex items-center justify-center relative z-10 pointer-events-none -mt-2 md:-mt-6">
             <HeroLogoCanvas />
           </div>
 
           {/* Authentic Straight-Line Pringles Wordmark shifted higher up */}
-          <div className="relative z-20 select-none pointer-events-none -mt-20 md:-mt-30 mb-2">
+          <div className="relative z-20 select-none pointer-events-none -mt-16 sm:-mt-20 md:-mt-30 mb-2">
             <h1
-              className="hero-pringles-wordmark text-7xl sm:text-8xl md:text-[9.5rem] tracking-tight leading-none text-center select-none"
+              className="hero-pringles-wordmark text-6xl sm:text-7xl md:text-8xl lg:text-[9.5rem] tracking-tight leading-none text-center select-none"
               aria-label="Pringles"
             >
               Pringles
@@ -163,7 +163,7 @@ export default function Home() {
           </div>
 
           {/* Tagline shifted down with ample breathing room */}
-          <p className="mt-6 md:mt-10 text-center font-anton text-sm sm:text-base md:text-lg text-white/95 tracking-[0.15em] uppercase drop-shadow-md select-none pointer-events-none relative z-20">
+          <p className="mt-4 sm:mt-6 md:mt-10 text-center font-anton text-xs sm:text-sm md:text-base lg:text-lg text-white/95 tracking-[0.12em] sm:tracking-[0.15em] uppercase drop-shadow-md select-none pointer-events-none relative z-20">
             ONCE YOU POP, THE FUN DON&apos;T STOP
           </p>
 
@@ -174,7 +174,7 @@ export default function Home() {
                 const el = document.getElementById('slide-1')
                 el?.scrollIntoView({ behavior: 'smooth' })
               }}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-white border-2 border-black text-black font-anton text-xs uppercase tracking-widest shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 animate-bounce cursor-pointer"
+              className="flex items-center gap-2 px-5 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white border-2 border-black text-black font-anton text-[11px] sm:text-xs uppercase tracking-widest shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 animate-bounce cursor-pointer"
             >
               <span>SCROLL TO UNCAP</span>
               <ChevronDown size={16} className="text-red-600 stroke-[3]" />
@@ -190,17 +190,17 @@ export default function Home() {
             <section
               key={flavorItem.id}
               id={`slide-${slideIndex}`}
-              className="w-full h-screen snap-start snap-always flex items-center px-6 sm:px-12 md:px-20 lg:px-28 relative overflow-hidden bg-transparent"
+              className="w-full min-h-[100dvh] h-[100dvh] snap-start snap-always flex flex-col justify-end md:justify-center md:flex-row md:items-center px-5 sm:px-10 md:px-20 lg:px-28 pb-8 sm:pb-12 md:pb-0 pt-20 md:pt-0 relative overflow-hidden bg-transparent pointer-events-none"
             >
-              {/* Left Half: Huge Anton Typography & Neo-Brutalist Flavor Details (z-30) */}
-              <div className="w-full md:w-1/2 max-w-xl text-left relative z-30 pointer-events-auto">
+              {/* Text container: relative z-10 pointer-events-none so touches pass through to canvas scroll */}
+              <div className="w-full md:w-1/2 max-w-xl text-left relative z-10 pointer-events-none">
                 {/* Slide Index & Neo-Brutalist Badge */}
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="font-anton text-sm tracking-widest text-white/80 drop-shadow">
+                <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-4">
+                  <span className="font-anton text-xs sm:text-sm tracking-widest text-white/80 drop-shadow">
                     {flavorItem.number} // 03
                   </span>
                   <div
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full border-2 border-black font-anton text-[11px] tracking-widest uppercase shadow-[3px_3px_0px_0px_#000000]"
+                    className="inline-flex items-center gap-1.5 px-3 py-0.5 sm:px-3.5 sm:py-1 rounded-full border-2 border-black font-anton text-[10px] sm:text-[11px] tracking-widest uppercase shadow-[2px_2px_0px_0px_#000000] sm:shadow-[3px_3px_0px_0px_#000000]"
                     style={{
                       backgroundColor: flavorItem.badgeBg,
                       color: flavorItem.badgeText,
@@ -212,29 +212,29 @@ export default function Home() {
                 </div>
 
                 {/* Subtitle */}
-                <p className="text-xs sm:text-sm font-black tracking-[0.25em] uppercase text-white/90 mb-2 drop-shadow">
+                <p className="text-[10px] sm:text-xs md:text-sm font-black tracking-[0.2em] sm:tracking-[0.25em] uppercase text-white/90 mb-1 sm:mb-2 drop-shadow">
                   {flavorItem.subtitle}
                 </p>
 
-                {/* Huge Anton Flavor Headline */}
-                <h2 className="font-anton text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.85] text-white drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] mb-6">
+                {/* Responsive Anton Flavor Headline */}
+                <h2 className="font-anton text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight uppercase leading-[0.9] md:leading-[0.85] text-white drop-shadow-[0_15px_30px_rgba(0,0,0,0.6)] mb-3 sm:mb-4 md:mb-6">
                   {flavorItem.title}
                 </h2>
 
                 {/* Description */}
-                <p className="text-base sm:text-lg text-white font-medium leading-relaxed max-w-lg mb-8 drop-shadow">
+                <p className="text-xs sm:text-base md:text-lg text-white font-medium leading-relaxed max-w-lg mb-4 sm:mb-6 md:mb-8 drop-shadow">
                   {flavorItem.desc}
                 </p>
 
                 {/* Interactive Neo-Brutalist Action & Stat Row */}
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 pointer-events-auto">
                   {/* Neo-Brutalist Stat Card */}
-                  <div className="inline-flex items-center gap-4 px-5 py-3 rounded-2xl bg-white text-black border-2 border-black shadow-[4px_4px_0px_0px_#000000]">
-                    <span className="font-anton text-3xl sm:text-4xl tracking-tight leading-none">
+                  <div className="inline-flex items-center gap-3 sm:gap-4 px-3.5 py-2 sm:px-5 sm:py-3 rounded-xl sm:rounded-2xl bg-white text-black border-2 border-black shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000]">
+                    <span className="font-anton text-2xl sm:text-3xl md:text-4xl tracking-tight leading-none">
                       {flavorItem.statValue}
                     </span>
-                    <div className="h-8 w-0.5 bg-black" />
-                    <span className="text-[11px] uppercase font-black tracking-wider text-black max-w-[120px] leading-tight">
+                    <div className="h-6 sm:h-8 w-0.5 bg-black" />
+                    <span className="text-[10px] sm:text-[11px] uppercase font-black tracking-wider text-black max-w-[100px] sm:max-w-[120px] leading-tight">
                       {flavorItem.statLabel}
                     </span>
                   </div>
@@ -245,13 +245,13 @@ export default function Home() {
                       const headerBtn = document.querySelector('header button') as HTMLButtonElement
                       headerBtn?.click()
                     }}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border-2 border-black font-anton text-xs uppercase tracking-widest shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 cursor-pointer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full border-2 border-black font-anton text-[11px] sm:text-xs uppercase tracking-widest shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 cursor-pointer pointer-events-auto"
                     style={{
                       backgroundColor: flavorItem.btnBg,
                       color: flavorItem.btnText,
                     }}
                   >
-                    <ShoppingBag size={15} className="stroke-[2.5]" />
+                    <ShoppingBag size={14} className="stroke-[2.5]" />
                     <span>Grab {flavorItem.name}</span>
                   </button>
                 </div>

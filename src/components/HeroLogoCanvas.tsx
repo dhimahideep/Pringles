@@ -92,9 +92,10 @@ export default function HeroLogoCanvas() {
   const logoScale = isDesktop ? 3.3 : 2.85
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative pointer-events-none">
       <Canvas
-        style={{ width: '100%', height: '100%' }}
+        className="pointer-events-none w-full h-full"
+        style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, toneMappingExposure: 0.95 }}
         camera={{ position: [0, 0, 4.4], fov: 42 }}

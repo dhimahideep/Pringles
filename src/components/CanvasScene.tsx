@@ -15,10 +15,12 @@ function InteractiveCanRig({
   activeSlide,
   posX,
   posY,
+  canScale,
 }: {
   activeSlide: number
   posX: number
   posY: number
+  canScale: number
 }) {
   const isHero = activeSlide === 0
   const activeFlavor = Math.max(0, activeSlide - 1)
@@ -90,7 +92,7 @@ function InteractiveCanRig({
 
   return (
     <group ref={groupRef} position={[isHero ? posX + 3.2 : posX, posY, 0]} scale={isHero ? 0 : 1}>
-      <PringlesCanScene activeFlavor={activeFlavor} />
+      <PringlesCanScene activeFlavor={activeFlavor} canScale={canScale} />
     </group>
   )
 }
@@ -106,14 +108,20 @@ const CanvasScene = forwardRef<THREE.Group, CanvasSceneProps>(
       return () => window.removeEventListener('resize', checkDesktop)
     }, [])
 
+    // Desktop: positioned on right side at x=1.8, y=-0.4, scale=0.58
+    // Mobile: centered at x=0, upper area y=0.5, scale=0.38 leaving lower half for text
     const posX = isDesktop ? 1.8 : 0
-    const posY = -0.4
+    const posY = isDesktop ? -0.4 : 0.5
+    const canScale = isDesktop ? 0.58 : 0.38
+    const shadowY = isDesktop ? -1.9 : -0.45
+    const shadowScale = isDesktop ? 5 : 3.2
     const isHero = activeSlide === 0
 
     return (
       <div className="fixed inset-0 z-20 w-screen h-screen pointer-events-none">
         <Canvas
-          style={{ width: '100%', height: '100%' }}
+          className="pointer-events-none w-full h-full"
+          style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
           dpr={[1, 2]}
           gl={{ antialias: true, alpha: true, toneMappingExposure: 0.9 }}
           camera={{ position: [0, 0, 7], fov: 40 }}
@@ -130,17 +138,22 @@ const CanvasScene = forwardRef<THREE.Group, CanvasSceneProps>(
 
           {/* Contact Shadows for Flavor Can */}
           <ContactShadows
-            position={[posX, -1.9, 0]}
+            position={[posX, shadowY, 0]}
             opacity={isHero ? 0 : 0.65}
-            scale={5}
+            scale={shadowScale}
             blur={2.4}
             far={3.5}
             color="#000000"
           />
 
           <Suspense fallback={null}>
-            {/* Flavor Can locked on right side for Slides 1, 2, 3 */}
-            <InteractiveCanRig activeSlide={activeSlide} posX={posX} posY={posY} />
+            {/* Flavor Can: locked on right for desktop, centered upper for mobile */}
+            <InteractiveCanRig
+              activeSlide={activeSlide}
+              posX={posX}
+              posY={posY}
+              canScale={canScale}
+            />
           </Suspense>
         </Canvas>
       </div>

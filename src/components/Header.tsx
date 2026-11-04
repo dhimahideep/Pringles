@@ -56,7 +56,7 @@ export default function Header({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-5 transition-colors duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 sm:px-6 md:px-12 py-3.5 sm:py-5 transition-colors duration-500 ${
           isHero
             ? 'bg-transparent border-b-2 border-transparent'
             : 'bg-black/75 border-b-2 border-black'
@@ -64,15 +64,15 @@ export default function Header({
       >
         {/* Top-Left: Neo-Brutalist Brand Lockup */}
         <div
-          className={`flex items-center gap-3 select-none transition-opacity duration-500 ${
+          className={`flex items-center gap-2.5 sm:gap-3 select-none transition-opacity duration-500 ${
             isHero ? 'opacity-90' : 'opacity-100'
           }`}
         >
-          <div className="w-10 h-10 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_0px_#000000] text-black">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white border-2 border-black flex items-center justify-center shadow-[2px_2px_0px_0px_#000000] sm:shadow-[3px_3px_0px_0px_#000000] text-black">
             {/* Iconic Mr. P Mustache Emblem */}
             <svg
               viewBox="0 0 32 32"
-              className="w-6 h-6 fill-red-600"
+              className="w-5 h-5 sm:w-6 sm:h-6 fill-red-600"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M16 11c-2.5 0-4.5 1.5-6 3.5C8 12.5 5.5 12 3 13c-1.5.6-2 2-1 3.2 2 2.4 5.5 3.3 9 2.3 2-.6 3.5-2 5-3.5 1.5 1.5 3 2.9 5 3.5 3.5 1 7 .1 9-2.3 1-1.2.5-2.6-1-3.2-2.5-1-5-.5-7 1.5-1.5-2-3.5-3.5-6-3.5z" />
@@ -81,14 +81,14 @@ export default function Header({
 
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-anton text-2xl tracking-tight text-white uppercase leading-none drop-shadow-md">
+              <span className="font-anton text-lg sm:text-2xl tracking-tight text-white uppercase leading-none drop-shadow-md">
                 PRINGLES
               </span>
-              <span className="text-[9px] font-black px-1.5 py-0.5 rounded bg-white text-black border border-black shadow-[1px_1px_0px_0px_#000000] leading-none">
+              <span className="text-[8px] sm:text-[9px] font-black px-1 sm:px-1.5 py-0.5 rounded bg-white text-black border border-black shadow-[1px_1px_0px_0px_#000000] leading-none">
                 ®
               </span>
             </div>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-white/90 font-bold">
+            <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/90 font-bold">
               {currentTheme.tagline}
             </span>
           </div>
@@ -97,9 +97,9 @@ export default function Header({
         {/* Top-Right: Neo-Brutalist Dynamic "Grab a Can" Pill Button */}
         <button
           onClick={() => setModalOpen(true)}
-          className={`rounded-full px-6 py-2.5 ${currentTheme.btnBg} ${currentTheme.btnText} font-anton text-xs sm:text-sm tracking-wider uppercase border-2 border-black shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 cursor-pointer flex items-center gap-2`}
+          className={`rounded-full px-4 py-2 sm:px-6 sm:py-2.5 ${currentTheme.btnBg} ${currentTheme.btnText} font-anton text-xs sm:text-sm tracking-wider uppercase border-2 border-black shadow-[3px_3px_0px_0px_#000000] sm:shadow-[4px_4px_0px_0px_#000000] hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all duration-150 cursor-pointer flex items-center gap-1.5 sm:gap-2 pointer-events-auto`}
         >
-          <ShoppingBag size={15} className="stroke-[2.5]" />
+          <ShoppingBag size={14} className="stroke-[2.5]" />
           <span>Grab a Can</span>
         </button>
       </header>
